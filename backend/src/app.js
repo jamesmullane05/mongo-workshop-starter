@@ -18,7 +18,11 @@ app.use(express.static("public"));
 
 // Import and use our application routes.
 import routes from "./routes/routes.js";
+import mongoose from "mongoose";
 app.use("/", routes);
+
+//Connect to db
+await mongoose.connect(process.env.DB_URL);
 
 // Start the server.
 app.listen(PORT, () => console.log(`App server listening on port ${PORT}!`));
